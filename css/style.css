@@ -1,0 +1,31 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+*{
+    font-family: 'Josefin Sans', sans-serif;
+}
+body {
+    background-color: #B85C3C;
+  }
+.agenda {
+    background-color: #E88C68;
+}
+
+.agenda .nav-link, .tab-content label , .tab-content  .form-text{
+    color: black
+}
+.agenda button  {
+    background-color:#C7551B;
+}
+.nav-pills .nav-link.active {
+    background-color: #C7551B; 
+}
+.nav-link:hover {
+    color: #F5BA42;
+    text-decoration: underline;
+}
+ img{
+    width: 70px;
+    height: 70px;
+    display: inline-block;
+}
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pagina de Ejercitacion de JavaScript" />
+    <meta
+      name="keybords"
+      content="JavaScript, ejercicios, bucles, for, let,var, const, array, objetos, metodos,html,DOM,BOM,CSS, Bootstrap "
+    />
+    <meta
+      name="author"
+      content="Garcia Moya Priscila Belen"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Clase JavaScript</title>
+</head>
+<body>
+  <main class="container">
+    <div class="row my-4">
+      <p class="h1 tituloAgenda text-center"> <i class="bi bi-telephone-inbound-fill"></i> Agenda Telefónica <img src="/img/pics.png" alt="picachu"></p>
+      <section class="d-flex align-items-start  agenda">
+        <article  class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+          <button class="nav-link active" id="v-pills-crearAgenda-tab" data-bs-toggle="pill" data-bs-target="#v-pills-crearAgenda" type="button" role="tab" aria-controls="v-pills-crearAgenda" aria-selected="true">1-Crear Agenda de Contactos <i class="bi bi-journals"></i></button>
+          <button class="nav-link" id="v-pills-agregarContacto-tab" data-bs-toggle="pill" data-bs-target="#v-pills-agregarContacto" type="button" role="tab" aria-controls="v-pills-agregarContacto" aria-selected="false">2- Agregar Contacto <i class="bi bi-person-plus-fill"></i></button>
+          <button class="nav-link" id="v-pills-existeContacto-tab" data-bs-toggle="pill" data-bs-target="#v-pills-existeContacto" type="button" role="tab" aria-controls="v-pills-existeContacto" aria-selected="false">3- Existe Contacto <i class="bi bi-search"></i> </button>
+          <button class="nav-link" id="v-pills-listarContacto-tab" data-bs-toggle="pill" data-bs-target="#v-pills-listarContacto" type="button" role="tab" aria-controls="v-pills-listarContacto" aria-selected="false" onclick="listarContacto()">4- Listar Contacto <i class="bi bi-list-task"></i> </button>
+          <button class="nav-link" id="v-pills-buscarContacto-tab" data-bs-toggle="pill" data-bs-target="#v-pills-buscarContacto" type="button" role="tab" aria-controls="v-pills-buscarContacto" aria-selected="false">5- Buscar Contacto <i class="bi bi-search"></i></button>
+          <button class="nav-link" id="v-pills-eliminarContacto-tab" data-bs-toggle="pill" data-bs-target="#v-pills-eliminarContacto" type="button" role="tab" aria-controls="v-pills-eliminarContacto" aria-selected="false">6- Eliminar Contacto <i class="bi bi-person-x-fill"></i></button>
+          <button class="nav-link" id="v-pills-agendaLlena-tab" data-bs-toggle="pill" data-bs-target="#v-pills-agendaLlena" type="button" role="tab" aria-controls="v-pills-agendaLlena" aria-selected="false" onclick="agendaLlena()">7- Agenda Llena <i class="bi bi-question-circle-fill"></i></button>
+          <button class="nav-link" id="v-pills-huecosLibres-tab" data-bs-toggle="pill" data-bs-target="#v-pills-huecosLibres" type="button" role="tab" aria-controls="v-pills-huecosLibres" aria-selected="false" onclick="huecosLibre()">8- Huecos Libre <i class="bi bi-question-circle-fill"></i></button>
+        </article>
+        <article class="tab-content" id="v-pills-tabContent">
+          <span class="tab-pane fade show active" id="v-pills-crearAgenda" role="tabpanel" aria-labelledby="v-pills-crearAgenda-tab"> 
+          <form>
+            <div class="mb-3">
+              <label for="inputNombrePropietario" class="form-label">Nombre del Propietario de la Agenda</label>
+              <input type="text" class="form-control" id="inputNombrePropietario" aria-describedby="nombreHelp" required>
+              <div id="nombreHelp" class="form-text">Ingrese Nombre completo del Propietario</div>
+            </div>
+            <button type="button" class="btn" onclick="crearAgenda()">Crear Agenda <i class="bi bi-journal-arrow-up"></i></button>
+          </form>
+        </span>
+          <span class="tab-pane fade " id="v-pills-agregarContacto" role="tabpanel" aria-labelledby="v-pills-agregarContacto-tab">
+            <form>
+              <div class="mb-3">
+                <label for="inputNombreContacto" class="form-label">Nombre del Contacto</label>
+                <input type="text" class="form-control" id="inputNombreContacto" aria-describedby="nombreHelp" required>
+                <div id="nombreHelp" class="form-text">Ingrese Nombre completo del Contacto</div>
+              </div>
+              <div class="mb-3">
+                <label for="inputTelefonoContacto" class="form-label">Teléfono del Contacto</label>
+                <input type="text" class="form-control" id="inputTelefonoContacto" aria-describedby="telefonoHelp" required>
+                <div id="telefonoHelp" class="form-text">Incluir el código de país y ser separados por guiones Ej: " +1-555-123-4567"</div>
+              </div>
+              <button type="button" class="btn" onclick="agregarContacto()">Crear Contacto <i class="bi bi-arrow-right-circle"></i></button>
+            </form>
+          </span>
+          <span class="tab-pane fade" id="v-pills-existeContacto" role="tabpanel" aria-labelledby="v-pills-existeContacto-tab">
+            <form>
+              <div class="mb-3">
+                <label for="inputNombreContactoExistente" class="form-label">Nombre del Contacto Existente</label>
+                <input type="text" class="form-control" id="inputNombreContactoExistente" aria-describedby="nombreHelp" required>
+                <div id="nombreHelp" class="form-text">Ingrese Nombre completo del Contacto Existente</div>
+              </div>
+              <div class="mb-3">
+                <label for="inputTelefonoContactoExistente" class="form-label">Teléfono del Contacto</label>
+                <input type="text" class="form-control" id="inputTelefonoContactoExistente" aria-describedby="telefonoHelp" required>
+                <div id="telefonoHelp" class="form-text">Incluir el código de país y ser separados por guiones Ej: " +1-555-123-4567"</div>
+              </div>
+              <button type="submit" class="btn" onclick="existeContacto()">Buscar Contacto Existente <i class="bi bi-search"></i></button>
+              <div class="mb-3 my-2">
+                <label for="resultadoBusquedaContactoExistente" class="form-label">Resultado de la busqueda:  </label>
+                <div id="resultadoBusquedaContactoExistente"></div>
+              </div>
+            </form>
+          </span>
+          <span class="tab-pane fade" id="v-pills-listarContacto" role="tabpanel" aria-labelledby="v-pills-listarContacto-tab">
+            <div id="listaContactos"></div>
+          </span>
+          <span class="tab-pane fade" id="v-pills-buscarContacto" role="tabpanel" aria-labelledby="v-pills-buscarContacto-tab">
+            <form>
+              <div class="mb-3">
+                <label for="inputNombreContactoBuscar" class="form-label">Nombre del Contacto</label>
+                <input type="text" class="form-control" id="inputNombreContactoBuscar" aria-describedby="nombreHelp" required>
+                <div id="nombreHelp" class="form-text">Ingrese Nombre completo del Contacto </div>
+              </div>
+              <button type="button" class="btn" onclick="buscarContacto()">Buscar Contacto <i class="bi bi-search"></i></button>
+              <div class="mb-3 my-2">
+                <label for="resultadoBusquedaContacto" class="form-label">Resultado de la busqueda:  </label>
+                <div id="resultadoBusquedaContacto"></div>
+              </div>
+            </form>
+          </span>
+          <span class="tab-pane fade" id="v-pills-eliminarContacto" role="tabpanel" aria-labelledby="v-pills-eliminarContacto-tab">
+            <form>
+              <div class="mb-3">
+                <label for="inputNombreContactoEliminar" class="form-label">Nombre del Contacto a Eliminar</label>
+                <input type="text" class="form-control" id="inputNombreContactoEliminar" aria-describedby="nombreHelp" required>
+                <div id="nombreHelp" class="form-text">Ingrese Nombre completo del Contacto </div>
+              </div>
+              <button type="button" class="btn" onclick="eliminarContacto()">Eliminar Contacto <i class="bi bi-trash3"></i></button>
+              <div class="mb-3 my-2">
+                <label for="resultadoContactoEliminado" class="form-label">Contacto Eliminado:  </label>
+                <div id="resultadoContactoEliminado"></div>
+              </div>
+            </form>
+          </span>
+          <span class="tab-pane fade" id="v-pills-agendaLlena" role="tabpanel" aria-labelledby="v-pills-agendaLlena-tab">
+            <div id="resultadoAgendaLlena"></div>
+          </span>
+          <span class="tab-pane fade" id="v-pills-huecosLibres" role="tabpanel" aria-labelledby="v-pills-huecosLibres-tab">
+            <div id="resultadoHuecosLibres"></div>
+           </span>
+        </article>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="js/ejercicio_1.js"></script>
+
+</body>
+</html>
